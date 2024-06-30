@@ -3,11 +3,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import MainLayout from './MainLayout';
 import Home from './pages/Home';
-import RegisterPage from "./pages/RegisterPage";
-
+import RegisterPage from "./components/RegisterPage";
 import LoginPage from "./pages/LoginPage";
-//import Tasks from './views/Tasks';
-import Profile from './views/Profile';
+import Tasks from './pages/Tasks';
+import Profile from './pages/Profile';
 
 
 /*
