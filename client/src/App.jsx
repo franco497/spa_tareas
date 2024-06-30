@@ -1,9 +1,58 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+//import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import MainLayout from './MainLayout';
+import Home from './views/Home';
 
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
+//import Tasks from './views/Tasks';
+import Profile from './views/Profile';
+
+
+/*
+import Login from './views/Login';
+import Register from './views/Register';
+*/
+
+
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: (
+      <MainLayout>
+      <Profile />
+      <Home />
+    </MainLayout>
+      ),
+      errorElement: <Error />
+    },
+    {
+      path: "/login",
+      element: <Login />,
+      errorElement: <Error />
+    },
+    {
+      path: "/register",
+      element: <Register />,
+      errorElement: <Error />
+    },
+    {
+      path: "/tasks",
+      element: (
+      <MainLayout>
+      <Tasks />
+    </MainLayout>
+      ),
+      errorElement: <Error />
+    },
+    /*{
+     element: <ProtectedRoutes />,
+     children: []
+    }*/
+  ]);
   return (
     <BrowserRouter>
       <Routes>
