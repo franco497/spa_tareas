@@ -2,9 +2,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 //import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import MainLayout from './MainLayout';
-import Home from './views/Home';
-
+import Home from './pages/Home';
 import RegisterPage from "./pages/RegisterPage";
+
 import LoginPage from "./pages/LoginPage";
 //import Tasks from './views/Tasks';
 import Profile from './views/Profile';
