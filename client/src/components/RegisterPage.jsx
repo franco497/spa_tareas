@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
-//import { registerRequest } from "../api/auth.js";
+
 
 const RegisterPage = () => {
-  const { register, handleSubmit, formState: { error } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = (data) => {
     console.log(data);
@@ -11,39 +11,40 @@ const RegisterPage = () => {
 
 
   return (
-    <div className="bg-zinc-800 max-w-md P-10 rounded-md">
+    <div className="bg-zinc-800 text-white max-w-md P-10 rounded-md">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label htmlFor="username">Username</label>
           <input id="username"
-          type="text"
-          className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
-          placeholder="Username"
-          {...register("username", { required: "the username is required" })}
+            type="text"
+            className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
+            placeholder="Username"
+            {...register("username", { required: "the username is required" })}
           />
-          {error.username && <p>{error.username.message}</p>}
+          {errors.username && <p>{errors.username.message}</p>}
         </div>
         <div>
           <label htmlFor="email">Email</label>
           <input id="email"
-          type="email"
-          className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
-          placeholder="Password"
-          {...register("email", { required: "the email is required" })}
+            type="email"
+            className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
+            placeholder="email@example.com"
+            {...register("email", { required: "the email is required" })}
           />
-          {error.email && <p>{error.email.message}</p>}
+          {errors.email && <p>{errors.email.message}</p>}
         </div>
         <div>
           <label htmlFor="password">Password</label>
           <input id="password"
-           className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
-          placeholder="Password"
-          {...register("password", { required: "the password is required" })}
+            className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
+            placeholder="Password"
+            {...register("password", { required: "the password is required" })}
           />
-          {error.password && <p>{error.password.message}</p>}
+          {errors.password && <p>{errors.password.message}</p>}
         </div>
-          
-        <button type="submit">Register</button>
+        <div className="flex justify-center mt-5">
+        <button type="submit"><strong>Register</strong></button>
+        </div>
       </form>
     </div>
   );
@@ -51,10 +52,14 @@ const RegisterPage = () => {
 
 export default RegisterPage;
 
+
+
 /*
  {handleSubmit( async(values) => {
           console.log(values);
           const res = await registerRequest(values);
           console.log(res);
         })}
+
+//import { registerRequest } from "../api/auth.js";        
 */
