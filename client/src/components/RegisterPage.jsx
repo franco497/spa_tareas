@@ -19,7 +19,7 @@ const RegisterPage = () => {
             type="text"
             className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
             placeholder="Username"
-            {...register("username", { required: "the username is required" })}
+            {...register("username", { required: "The username is required" })}
           />
           {errors.username && <p>{errors.username.message}</p>}
         </div>
@@ -29,7 +29,7 @@ const RegisterPage = () => {
             type="email"
             className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
             placeholder="email@example.com"
-            {...register("email", { required: "the email is required" })}
+            {...register("email", { required: "The email is required" })}
           />
           {errors.email && <p>{errors.email.message}</p>}
         </div>
@@ -38,7 +38,7 @@ const RegisterPage = () => {
           <input id="password"
             className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
             placeholder="Password"
-            {...register("password", { required: "the password is required" })}
+            {...register("password", { required: "The password is required" })}
           />
           {errors.password && <p>{errors.password.message}</p>}
         </div>
