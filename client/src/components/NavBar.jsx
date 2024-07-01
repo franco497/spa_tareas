@@ -10,7 +10,7 @@ const NavBar = () => {
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
   const content = <>
-    <div className="lg:hidden block absolute top-16 w-full left-0 right-0  bg-lime-900 text-yellow-50 transition">
+    <div className="lg:hidden block absolute top-16 w-full left-0 right-0  bg-[#5D9C59] text-yellow-50 transition">
       <ul className="text-center text-xl p-1">
         <LinkRouter to="/">
           <li className="my-4 py-4 border-slate-400 hover:bg-slate-400 hover:rounded">Home</li>
@@ -33,7 +33,7 @@ const NavBar = () => {
 
   return (
     <nav>
-      <div className="h-10vh flex justify-between z-50  bg-lime-900 text-yellow-50 lg:py-5 px-20 py-4">
+      <div className="h-10vh flex justify-between z-50  bg-[#5D9C59] text-yellow-50 lg:py-5 px-20 py-4">
         <div className="flex items-center flex-1">
           <span className="text-3xl font-bold"><MdOutlineAddReaction /></span>
         </div>

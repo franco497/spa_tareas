@@ -1,14 +1,19 @@
 import { useForm } from "react-hook-form";
+import { registerRequest } from "../api/auth";
 
 
 const RegisterPage = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async(data) => {
+    //console.log(data);
+    try {
+      const res = await registerRequest(data);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
   };
-
-
 
   return (
     <div className="bg-zinc-800 text-white max-w-md P-10 rounded-md">
@@ -51,15 +56,3 @@ const RegisterPage = () => {
 }
 
 export default RegisterPage;
-
-
-
-/*
- {handleSubmit( async(values) => {
-          console.log(values);
-          const res = await registerRequest(values);
-          console.log(res);
-        })}
-
-//import { registerRequest } from "../api/auth.js";        
-*/

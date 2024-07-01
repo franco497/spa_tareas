@@ -6,7 +6,7 @@ const Footer = () => {
   const Year = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-lime-900 text-yellow-50 transition">
+    <footer className="relative bg-[#5D9C59] text-yellow-50 transition">
       <div className="relative top-0 left-0 w-[100%] overflow-hidden">
         <svg data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"
