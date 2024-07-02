@@ -37,7 +37,7 @@ const NavBar = () => {
         <div className="flex items-center flex-1">
           <span className="text-3xl font-bold"><MdOutlineAddReaction /></span>
         </div>
-        <div className="lg:flex md:flex items center justify-end font-normal hidden">
+        <div className="lg:flex md:flex items center justify-end font-normal hidden text-2xl ">
           <div className="flex-10">
             <ul className="flex gap-8 mr-16 text-[18]">
               <LinkRouter to="/">
