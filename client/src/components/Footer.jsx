@@ -14,7 +14,7 @@ const Footer = () => {
           preserveAspectRatio="none">
           <path
             d="M1200 0L0 0 598.97 114.72 1200 0z"
-            className="relative block h-[600px] fill-[#b9f8f4]"></path>
+            className="relative block h-[600px] fill-[#DDF7E3]"></path>
         </svg>
         <div className="grid lg:grid-cols-4 gap-20 sm:grid-cols-1 p-20">
           <div className="flex flex-col gap-5">
