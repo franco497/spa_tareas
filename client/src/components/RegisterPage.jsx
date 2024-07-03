@@ -67,24 +67,27 @@ const RegisterPage = () => {
             </div>
           </form>
         </div>
-        <div className="pt-16 pl-10 pr-0 lg:w-[60%] w-[70%] flex items-center justify-center relative">
-          <div className="absolute top-0 left-0 right-0 bg-green-50 px-6 pt-6 pb-0 rounded-lg shadow-md text-green-900 z-10">
-            <h2 className="text-2xl font-bold mb-4">Quick Registration with Rex 🐾</h2>
-            <p className="text-lg m-6">
+        <div className="lg:pl-10 lg:pt-10 lg:w-[60%] w-[70%] flex flex-col items-center justify-center relative">
+          <div className="bg-green-50 px-2 pt-6 pb-6 rounded-lg shadow-md text-green-900 w-full">
+            <h2 className="text-2xl font-bold mb-4 text-center">Quick Registration with Rex 🐾</h2>
+            <p className="text-lg mb-4">
               Hello human! I'm Rex, the organized dog 🐶 I need an app to remember my important walks and naps. Don't forget that all fields in the form are required. Send me your information to start organizing my days! 🐾
             </p>
           </div>
-          <div className="relative">
+          <div className="mt-6 w-full flex sm:flex-row flex-col sm:items-end items-center gap-3">
             <img
-              className=" lg:ml-20 lg:mt-20 lg:pt-20 lg:w-[40%] ml-8 pt-3 mt-[65%] w-[38%] rounded-full shadow-lg z-0"
+              className="lg:ml-3 lg:mt-1 lg:pt-10 sm:w-[40%] w-[60%] sm:mt-[3%] mt-[15%] ml-8 rounded-full shadow-lg"
               src="https://res.cloudinary.com/dqh2illb5/image/upload/v1719868462/login/pexels-charlesdeluvio-1851164_ryomfx.jpg"
               alt="image of a dog looking at how you are registering"
             />
-            <div className="bg-yellow-200 text-yellow-800 lg:px-3 lg:mr-12 md:mr-0 rounded-lg max-w-xs absolute bottom-0 right-0 z-10">
+            <div className="bg-yellow-200 text-yellow-800 p-2 lg:mx-1 sm:mr-1 md:mx-2 rounded-lg sm:max-w-[60%] w-auto mt-4 sm:mt-0">
               Remember! All fields are required 🐾 Send the form and you will help a dog have his life more organized! 🐶
             </div>
           </div>
+
         </div>
+
+
       </div>
     </div>
   );
