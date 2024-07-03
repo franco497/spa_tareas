@@ -6,7 +6,7 @@ const Footer = () => {
   const Year = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-lime-900 text-yellow-50 transition">
+    <footer className="relative bg-[#5D9C59] text-yellow-50 transition">
       <div className="relative top-0 left-0 w-[100%] overflow-hidden">
         <svg data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"
@@ -14,7 +14,7 @@ const Footer = () => {
           preserveAspectRatio="none">
           <path
             d="M1200 0L0 0 598.97 114.72 1200 0z"
-            className="relative block h-[600px] fill-[#b9f8f4]"></path>
+            className="relative block h-[600px] fill-[#DDF7E3]"></path>
         </svg>
         <div className="grid lg:grid-cols-4 gap-20 sm:grid-cols-1 p-20">
           <div className="flex flex-col gap-5">

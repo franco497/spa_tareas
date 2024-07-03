@@ -27,7 +27,11 @@ function App() {
     },
     {
       path: "/register",
-      element: <RegisterPage />,
+      element: (
+      <MainLayout>
+      <RegisterPage />
+      </MainLayout>
+      ),
       errorElement: <Error />
     },
     {
