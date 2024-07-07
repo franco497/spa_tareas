@@ -32,7 +32,7 @@ const RegisterPage = () => {
               <input
                 id="username"
                 type="text"
-                className="border border-gray-300 px-4 py-2 rounded-md my-2"
+                className="border border-gray-300 text-yellow-800 px-4 py-2 rounded-md my-2"
                 placeholder="Username"
                 {...register("username", { required: "The username is required" })}
               />
@@ -43,7 +43,7 @@ const RegisterPage = () => {
               <input
                 id="email"
                 type="email"
-                className="border border-gray-300 px-4 py-2 rounded-md my-2"
+                className="border border-gray-300 text-yellow-800 px-4 py-2 rounded-md my-2"
                 placeholder="email@example.com"
                 {...register("email", { required: "The email is required" })}
               />
@@ -54,7 +54,7 @@ const RegisterPage = () => {
               <input
                 id="password"
                 type="password"
-                className="border border-gray-300 px-4 py-2 rounded-md my-2"
+                className="border border-gray-300 text-yellow-800 px-4 py-2 rounded-md my-2"
                 placeholder="Password"
                 {...register("password", { required: "The password is required" })}
               />
