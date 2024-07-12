@@ -18,9 +18,9 @@ const RegisterPage = () => {
   return (
     <div>
       <div className="bg-green-50 text-green-900 p-6 sm:mx-0 mx-[5%] rounded-lg shadow-md">
-        <h1 className="text-3xl font-bold mt-4 mb-5">Welcome to SPA-Tasks! 📝</h1>
+        <h1 className="text-3xl font-bold mt-4 mb-5">Welcome to the SPA-Tasks Register! 📝</h1>
         <p className="text-lg mb-5">
-          Discover a new way to organize your pending tasks. Using the powerful react-hook-form to manage your information effectively. Register now and start simplifying your daily life with our SPA! 🔥
+          Register now and start simplifying your daily life with our SPA! 🙂
         </p>
       </div>
       <div className="flex flex-col lg:flex-row justify-center items-center lg:px-14 py-12 w-full gap-20">
@@ -32,7 +32,7 @@ const RegisterPage = () => {
               <input
                 id="username"
                 type="text"
-                className="border border-gray-300 px-4 py-2 rounded-md my-2"
+                className="border border-gray-300 text-yellow-800 px-4 py-2 rounded-md my-2"
                 placeholder="Username"
                 {...register("username", { required: "The username is required" })}
               />
@@ -43,7 +43,7 @@ const RegisterPage = () => {
               <input
                 id="email"
                 type="email"
-                className="border border-gray-300 px-4 py-2 rounded-md my-2"
+                className="border border-gray-300 text-yellow-800 px-4 py-2 rounded-md my-2"
                 placeholder="email@example.com"
                 {...register("email", { required: "The email is required" })}
               />
@@ -54,7 +54,7 @@ const RegisterPage = () => {
               <input
                 id="password"
                 type="password"
-                className="border border-gray-300 px-4 py-2 rounded-md my-2"
+                className="border border-gray-300 text-yellow-800 px-4 py-2 rounded-md my-2"
                 placeholder="Password"
                 {...register("password", { required: "The password is required" })}
               />
@@ -69,9 +69,9 @@ const RegisterPage = () => {
         </div>
         <div className="lg:pl-10 lg:pt-10 lg:w-[60%] w-[70%] flex flex-col items-center justify-center relative">
           <div className="bg-green-50 px-2 pt-6 pb-6 rounded-lg shadow-md text-green-900 w-full">
-            <h2 className="text-2xl font-bold mb-4 text-center">Quick Registration with Rex 🐾</h2>
+            <h2 className="text-2xl font-bold mb-4 text-center">Quick Registration with Philanthropist 🐾</h2>
             <p className="text-lg mb-4">
-              Hello human! I'm Rex, the organized dog 🐶 I need an app to remember my important walks and naps. Don't forget that all fields in the form are required. Send me your information to start organizing my days! 🐾
+              Hello human! I'm Philanthropist, the organized dog 🐕 You probably need an app to remember important walks and naps. All fields in the form are required. Send me your information to start organizing your days! 🐾
             </p>
           </div>
           <div className="mt-6 w-full flex sm:flex-row flex-col sm:items-end items-center gap-3">
@@ -81,13 +81,10 @@ const RegisterPage = () => {
               alt="image of a dog looking at how you are registering"
             />
             <div className="bg-yellow-200 text-yellow-800 p-2 lg:mx-1 sm:mr-1 md:mx-2 rounded-lg sm:max-w-[60%] w-auto mt-4 sm:mt-0">
-              Remember! All fields are required 🐾 Send the form and you will help a dog have his life more organized! 🐶
+              Remember! All fields are required 🐾 Send the form and you can have your life more organized thanks to SPA-Tasks! 🐶
             </div>
           </div>
-
         </div>
-
-
       </div>
     </div>
   );

@@ -1,9 +1,8 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-//import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import MainLayout from './MainLayout';
 import HomePage from './pages/HomePage';
-import RegisterPage from "./components/RegisterPage";
+import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import TasksPage from './pages/TasksPage';
 import ProfilePage from './pages/ProfilePage';
@@ -14,15 +13,27 @@ function App() {
       path: "/",
       element: (
       <MainLayout>
-      <ProfilePage />
       <HomePage />
     </MainLayout>
       ),
       errorElement: <Error />
     },
     {
+      path: "/profile",
+      element: (
+      <MainLayout>
+      <ProfilePage />
+    </MainLayout>
+      ),
+      errorElement: <Error />
+    },
+    {
       path: "/login",
-      element: <LoginPage />,
+      element: (
+      <MainLayout>
+      <LoginPage />
+      </MainLayout>
+      ),
       errorElement: <Error />
     },
     {
