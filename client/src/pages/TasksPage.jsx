@@ -2,11 +2,22 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const TasksPage = () => {
   const { register, handleSubmit, reset, setValue } = useForm();
   const [tasks, setTasks] = useState([]);
   const [editingTask, setEditingTask] = useState(null);
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  // Redirigir si no está autenticado
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login');
+    }
+  }, [isAuthenticated, navigate]);
 
   // Obtener tareas al montar el componente
   useEffect(() => {
@@ -19,8 +30,10 @@ const TasksPage = () => {
       }
     };
 
-    fetchTasks();
-  }, []);
+    if (isAuthenticated) {
+      fetchTasks();
+    }
+  }, [isAuthenticated]);
 
   // Agregar o editar tarea
   const onSubmit = async (data) => {
@@ -59,6 +72,10 @@ const TasksPage = () => {
     setValue("description", task.description);
     setValue("date", task.date);
   };
+
+  if (!isAuthenticated) {
+    return null; // Opcional: Puedes mostrar un cargando o un mensaje de redirección aquí
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">
