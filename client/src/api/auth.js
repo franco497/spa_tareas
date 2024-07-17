@@ -1,7 +1,7 @@
-import axios from "axios";
+import instanceAxios from "./axios";
 
-const API = "http://localhost:4000/api"; //ruta del backend
+//const API = "http://localhost:4000/api"; //ruta del backend
 
-export const registerRequest = (user) => axios.post(`${API}/register`, user);
+export const registerRequest = (user) => instanceAxios.post(`/register`, user);
 
-export const loginRequest = (data) => axios.post(`${API}/login`, data);
+export const loginRequest = (data) => instanceAxios.post(`/login`, data);

@@ -12,7 +12,8 @@ const LoginPage = () => {
   const onSubmit = async (data) => {
     try {
       const res = await loginRequest(data);
-      //console.log('soy res: ',res);
+      console.log('soy res: ',res);
+      
       const token = Cookies.get('token');
       console.log("token: ", token);
       
