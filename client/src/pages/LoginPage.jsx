@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import Cookies from 'js-cookie';
 import { loginRequest } from "../api/auth";
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -11,9 +12,12 @@ const LoginPage = () => {
   const onSubmit = async (data) => {
     try {
       const res = await loginRequest(data);
-      console.log(res);
-      if (res.data.token) {
-        login(res.data.token);
+      //console.log('soy res: ',res);
+      const token = Cookies.get('token');
+      console.log("token: ", token);
+      
+      if (token) {
+        login(token);
         navigate("/tasks");
       }
     } catch (error) {
