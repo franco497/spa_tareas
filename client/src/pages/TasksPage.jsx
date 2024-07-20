@@ -48,6 +48,7 @@ const TasksPage = () => {
           <div className="flex flex-col mx-6">
             <label htmlFor="date" className="text-lg font-medium">Date</label>
             <input
+              className="border border-gray-300 text-yellow-800 px-4 py-2 rounded-md my-2"
               type="date"
               {...register("date")}
             />
