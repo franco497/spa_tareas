@@ -1,17 +1,31 @@
 import { useForm } from "react-hook-form";
-import { loginRequest } from "../api/auth"; // Asegúrate de tener esta función definida
+import Cookies from 'js-cookie';
+import { loginRequest } from "../api/auth";
+import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
       const res = await loginRequest(data);
-      console.log(res);
+      console.log('soy res: ',res);
+      
+      const token = Cookies.get('token');
+      console.log("token: ", token);
+      
+      if (token) {
+        login(token);
+        navigate("/tasks");
+      }
     } catch (error) {
       console.log(error);
     }
   };
+
 
   return (
     <div>
@@ -34,7 +48,7 @@ const LoginPage = () => {
                 placeholder="email"
                 {...register("email", { required: "The email is required" })}
               />
-              {errors.username && <p className="text-red-600">{errors.username.message}</p>}
+              {errors.email && <p className="text-red-600">{errors.email.message}</p>}
             </div>
             <div className="flex flex-col mx-6">
               <label htmlFor="password" className="text-lg font-medium">Password</label>
@@ -59,10 +73,12 @@ const LoginPage = () => {
             <h2 className="text-2xl font-bold mb-4 text-center">Quick start with the help of Apo 11 🚀🐶</h2>
             <p className="text-lg mb-4">
               Hey human! I'm Apo 11 🚀🐶, a super chill dog 🚀🐶 here to help you log in. Just follow these steps:
-              <ol className="my-2">
+            </p>
+            <ol className="my-2">
                 <li>1. Enter your info correctly</li>
                 <li>2. etc.</li>
-              </ol>
+            </ol>
+            <p className="text-lg mb-4">
               If you follow the instructions carefully, you won't have any issues 🚀🚀🚀.
             </p>
           </div>
@@ -73,7 +89,7 @@ const LoginPage = () => {
               alt="image of a dog looking at how you are logging in"
             />
             <div className="bg-yellow-200 text-yellow-800 p-2 lg:mx-1 sm:mr-1 md:mx-2 rounded-lg sm:max-w-[60%] w-auto mt-4 sm:mt-0">
-            Now, with the same vibe: 'Hey, it's me again, Apo 11 🚀🐶. If you're having trouble with authentication, ask any trusted dog for help. And whatever you do, steer clear of those web pirate cats. 🐾
+              Now, with the same vibe: 'Hey, it's me again, Apo 11 🚀🐶. If you're having trouble with authentication, ask any trusted dog for help. And whatever you do, steer clear of those web pirate cats. 🐾
             </div>
           </div>
         </div>
