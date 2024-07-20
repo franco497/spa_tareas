@@ -4,6 +4,7 @@ import MainLayout from './MainLayout';
 import HomePage from './pages/HomePage';
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
+import LogoutPage from './pages/LogoutPage';
 import TasksPage from './pages/TasksPage';
 import ProfilePage from './pages/ProfilePage';
 import ProtectedRoutes from './components/ProtectedRoutes';
@@ -33,6 +34,15 @@ function App() {
       element: (
         <MainLayout>
           <LoginPage />
+        </MainLayout>
+      ),
+      errorElement: <Error />
+    },
+    {
+      path: "/logout",
+      element: (
+        <MainLayout>
+          <LogoutPage />
         </MainLayout>
       ),
       errorElement: <Error />

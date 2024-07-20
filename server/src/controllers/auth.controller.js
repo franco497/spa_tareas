@@ -66,7 +66,7 @@ export const login = async (req, res) => {
     res.cookie('token', token, {
       httpOnly: false, //esto en true bloquea el acceso a la cookie para JS en el front 
       secure: true, // usar HTTPS en producción
-      sameSite: 'None',
+      sameSite: 'none',
     });
     res.json({
       id: userFound._id,
@@ -83,7 +83,10 @@ export const login = async (req, res) => {
 
 export const logout = (req, res) => {
   res.cookie('token', "", {
-    expires: new Date(0)
+    expires: new Date(0),
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none',
   });
   return res.sendStatus(200);
 }

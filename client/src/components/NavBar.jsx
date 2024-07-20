@@ -40,7 +40,9 @@ const NavBar = () => {
             <LinkRouter to="/profile">
               <li className="my-4 py-4 border-slate-400 hover:bg-slate-400 hover:rounded">Profile</li>
             </LinkRouter>
-            <li onClick={handleLogout} className="my-4 py-4 border-slate-400 hover:bg-slate-400 hover:rounded cursor-pointer">Logout</li>
+            <LinkRouter to="/logout">
+              <li className="my-4 py-4 border-slate-400 hover:bg-slate-400 hover:rounded">Logout</li>
+            </LinkRouter>
           </>
         )}
       </ul>
@@ -76,7 +78,9 @@ const NavBar = () => {
                   <LinkRouter to="/profile">
                     <li className="hover:text-fuchsia-600 transition border-b-2 border-slate-900 hover:border-fuchsia-600 cursor-pointer">Profile</li>
                   </LinkRouter>
-                  <li onClick={handleLogout} className="hover:text-fuchsia-600 transition border-b-2 border-slate-900 hover:border-fuchsia-600 cursor-pointer">Logout</li>
+                  <LinkRouter to="/logout">
+                    <li className="hover:text-fuchsia-600 transition border-b-2 border-slate-900 hover:border-fuchsia-600 cursor-pointer">Logout</li>
+                  </LinkRouter>
                 </>
               )}
             </ul>
