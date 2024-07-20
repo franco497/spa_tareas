@@ -1,142 +1,77 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
-import axios from "axios";
-import { FaEdit, FaTrash } from "react-icons/fa";
-import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { createTaskRequest } from '../api/tasks';
 
 const TasksPage = () => {
-  const { register, handleSubmit, reset, setValue } = useForm();
-  const [tasks, setTasks] = useState([]);
-  const [editingTask, setEditingTask] = useState(null);
-  const { isAuthenticated } = useAuth();
-  const navigate = useNavigate();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const [message, setMessage] = useState("");
 
-  
-  useEffect(() => {
-    if (!isAuthenticated) {
-      navigate('/login');
-    }
-  }, [isAuthenticated, navigate]);
-
-  /*
-  useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        const res = await axios.get("/tasks");
-        setTasks(res.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    if (isAuthenticated) {
-      fetchTasks();
-    }
-  }, [isAuthenticated]);
-*/
-  // Agregar o editar tarea
-  /*
   const onSubmit = async (data) => {
     try {
-      if (editingTask) {
-        await axios.put(`/tasks/${editingTask._id}`, data);
-      } else {
-        await axios.post("/tasks", data);
-      }
-      // Actualizar lista de tareas
-      const res = await axios.get("/tasks");
-      setTasks(res.data);
-      reset();
-      setEditingTask(null);
+      console.log("Enviando datos:", data); // Depuración de los datos enviados
+      const res = await createTaskRequest(data);
+      console.log("Respuesta del servidor:", res); // Depuración de la respuesta
+      setMessage("Task created successfully!");
+      reset(); // Resetear el formulario después de la creación de la tarea
     } catch (error) {
-      console.log(error);
+      console.error("Error al crear la tarea:", error);
+      setMessage("Failed to create task.");
     }
-  };
-*/
-/*
-  // Eliminar tarea
-  const handleDelete = async (id) => {
-    try {
-      await axios.delete(`/tasks/${id}`);
-      // Actualizar lista de tareas
-      const res = await axios.get("/tasks");
-      setTasks(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-*/
-/*
-  // Preparar formulario para editar tarea
-  const handleEdit = (task) => {
-    setEditingTask(task);
-    setValue("title", task.title);
-    setValue("description", task.description);
-    setValue("date", task.date);
   };
 
-  if (!isAuthenticated) {
-    return null; // Opcional: Puedes mostrar un cargando o un mensaje de redirección aquí
-  }
-*/
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">Tasks</h1>
-      
-      {/* Formulario para agregar/editar tarea */}
-      <form onSubmit={""} className="mb-8">
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Title</label>
-          <input
-            type="text"
-            {...register("title", { required: true })}
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
-          />
+    <div>
+      <div className="lg:ml-10 m-3 lg:w-[40%] md:w-[50%] w-[70%] border-2 border-solid border-fuchsia-600 bg-[#5D9C59] text-white rounded-md">
+        <h2 className="text-2xl font-bold lg:my-12 my-3 text-center">Create Task</h2>
+        {message && <p className="text-2xl font-bold lg:my-12 my-3 text-center">{message}</p>}
+        <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex flex-col mx-6">
+            <label htmlFor="title" className="text-lg font-medium">Title</label>
+            <input
+              className="border border-gray-300 text-yellow-800 px-4 py-2 rounded-md my-2"
+              type="text"
+              placeholder="Title"
+              {...register("title", { required: true })}
+            />
+            {errors.title && <p className="text-red-600">Title is required</p>}
+          </div>
+          <div className="flex flex-col mx-6">
+            <label htmlFor="description" className="text-lg font-medium">Description</label>
+            <input
+              className="border border-gray-300 text-yellow-800 px-4 py-2 rounded-md my-2"
+              type="text"
+              placeholder="Description"
+              {...register("description", { required: true })}
+            />
+            {errors.description && <p className="text-red-600">Description is required</p>}
+          </div>
+          <div className="flex flex-col mx-6">
+            <label htmlFor="date" className="text-lg font-medium">Date</label>
+            <input
+              type="date"
+              {...register("date")}
+            />
+          </div>
+          <div className="flex justify-center lg:pt-8 lg:mt-12 pb-5">
+            <button type="submit" className="bg-white text-[#5D9C59] lg:py-4 py-2 px-12 rounded-md shadow-md hover:bg-gray-100 transition duration-300">Create Task</button>
+          </div>
+        </form>
+      </div>
+      <div className="lg:pl-10 lg:pt-10 lg:w-[60%] w-[70%] flex flex-col items-center justify-center relative">
+        <div className="bg-green-50 px-2 pt-6 pb-6 rounded-lg shadow-md text-green-900 w-full">
+          <h2 className="text-2xl font-bold mb-4 text-center">soy texto 🚀🐶</h2>
+          <p className="text-lg mb-4">
+            otro texto
+          </p>
+          <ol className="my-2">
+            <li>1. más texto</li>
+            <li>2. etc.</li>
+          </ol>
+          <p className="text-lg mb-4">
+            otro texto más 🚀🚀🚀.
+          </p>
         </div>
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Description</label>
-          <textarea
-            {...register("description", { required: true })}
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Date</label>
-          <input
-            type="date"
-            {...register("date")}
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
-          />
-        </div>
-        <button
-          type="submit"
-          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        >
-          {editingTask ? "Update Task" : "Add Task"}
-        </button>
-      </form>
-
-      {/* Lista de tareas */}
-      <ul className="space-y-4">
-        {tasks.map((task) => (
-          <li key={task._id} className="bg-white shadow overflow-hidden rounded-md px-6 py-4 flex justify-between items-center">
-            <div>
-              <h3 className="text-xl font-bold">{task.title}</h3>
-              <p>{task.description}</p>
-              <p>{new Date(task.date).toLocaleDateString()}</p>
-            </div>
-            <div className="flex space-x-4">
-              <button onClick={() => handleEdit(task)} className="text-blue-500 hover:text-blue-700">
-                <FaEdit />
-              </button>
-              <button onClick={() => handleDelete(task._id)} className="text-red-500 hover:text-red-700">
-                <FaTrash />
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
+      </div>
     </div>
   );
 };
