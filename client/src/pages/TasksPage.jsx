@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
-import { createTaskRequest, getTasksRequest } from '../api/tasks';
+import { createTaskRequest, getTasksRequest, getTaskRequest, updateTaskRequest, deleteTaskRequest } from '../api/tasks';
+import TaskModal from '../components/TaskModal';
 
 const TasksPage = () => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const [message, setMessage] = useState("");
   const [tasks, setTasks] = useState([]);
+  const [selectedTask, setSelectedTask] = useState(null);
 
   const fetchTasks = async () => {
     try {
@@ -31,6 +33,43 @@ const TasksPage = () => {
     } catch (error) {
       console.error("Error al crear la tarea:", error);
       setMessage("Failed to create task.");
+    }
+  };
+
+  const handleTaskClick = async (taskId) => {
+    try {
+      const res = await getTaskRequest(taskId);
+      setSelectedTask(res.data);
+    } catch (error) {
+      console.error("Error al obtener la tarea:", error);
+    }
+  };
+
+  const handleTaskClose = () => {
+    setSelectedTask(null);
+  };
+
+  const handleTaskUpdate = async (updatedTask) => {
+    try {
+      await updateTaskRequest(updatedTask._id, updatedTask);
+      setMessage("Task updated successfully!");
+      fetchTasks(); // Actualizar la lista de tareas
+      setSelectedTask(null); // Cerrar el modal
+    } catch (error) {
+      console.error("Error al actualizar la tarea:", error);
+      setMessage("Failed to update task.");
+    }
+  };
+
+  const handleTaskDelete = async (taskId) => {
+    try {
+      await deleteTaskRequest(taskId);
+      setMessage("Task deleted successfully!");
+      fetchTasks(); // Actualizar la lista de tareas
+      setSelectedTask(null); // Cerrar el modal
+    } catch (error) {
+      console.error("Error al eliminar la tarea:", error);
+      setMessage("Failed to delete task.");
     }
   };
 
@@ -79,7 +118,7 @@ const TasksPage = () => {
           {tasks.length > 0 ? (
             <ul>
               {tasks.map(task => (
-                <li key={task._id} className="mb-4 p-4 border rounded-lg shadow-sm bg-white">
+                <li key={task._id} className="mb-4 p-4 border rounded-lg shadow-sm bg-white" onClick={() => handleTaskClick(task._id)}>
                   <h3 className="text-xl font-semibold">{task.title}</h3>
                   <p>{task.description}</p>
                   <p>{new Date(task.date).toLocaleDateString()}</p>
@@ -91,8 +130,17 @@ const TasksPage = () => {
           )}
         </div>
       </div>
+      {selectedTask && (
+        <TaskModal
+          task={selectedTask}
+          onClose={handleTaskClose}
+          onUpdate={handleTaskUpdate}
+          onDelete={handleTaskDelete}
+        />
+      )}
     </div>
   );
 };
 
 export default TasksPage;
+
