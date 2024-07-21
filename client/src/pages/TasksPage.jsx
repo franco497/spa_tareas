@@ -1,18 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
-import { createTaskRequest } from '../api/tasks';
+import { createTaskRequest, getTasksRequest } from '../api/tasks';
 
 const TasksPage = () => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const [message, setMessage] = useState("");
+  const [tasks, setTasks] = useState([]);
+
+  const fetchTasks = async () => {
+    try {
+      const res = await getTasksRequest();
+      setTasks(res.data);
+    } catch (error) {
+      console.error("Error al obtener las tareas:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTasks();
+  }, []);
 
   const onSubmit = async (data) => {
     try {
-      console.log("Enviando datos:", data); // Depuración de los datos enviados
+      console.log("Enviando datos:", data);
       const res = await createTaskRequest(data);
-      console.log("Respuesta del servidor:", res); // Depuración de la respuesta
+      console.log("Respuesta del servidor:", res);
       setMessage("Task created successfully!");
-      reset(); // Resetear el formulario después de la creación de la tarea
+      reset();
+      fetchTasks(); // Obtener las tareas nuevamente después de crear una nueva tarea
     } catch (error) {
       console.error("Error al crear la tarea:", error);
       setMessage("Failed to create task.");
@@ -60,17 +75,20 @@ const TasksPage = () => {
       </div>
       <div className="lg:pl-10 lg:pt-10 lg:w-[60%] w-[70%] flex flex-col items-center justify-center relative">
         <div className="bg-green-50 px-2 pt-6 pb-6 rounded-lg shadow-md text-green-900 w-full">
-          <h2 className="text-2xl font-bold mb-4 text-center">soy texto 🚀🐶</h2>
-          <p className="text-lg mb-4">
-            otro texto
-          </p>
-          <ol className="my-2">
-            <li>1. más texto</li>
-            <li>2. etc.</li>
-          </ol>
-          <p className="text-lg mb-4">
-            otro texto más 🚀🚀🚀.
-          </p>
+          <h2 className="text-2xl font-bold mb-4 text-center">Tasks List</h2>
+          {tasks.length > 0 ? (
+            <ul>
+              {tasks.map(task => (
+                <li key={task._id} className="mb-4 p-4 border rounded-lg shadow-sm bg-white">
+                  <h3 className="text-xl font-semibold">{task.title}</h3>
+                  <p>{task.description}</p>
+                  <p>{new Date(task.date).toLocaleDateString()}</p>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-center">No tasks found.</p>
+          )}
         </div>
       </div>
     </div>
