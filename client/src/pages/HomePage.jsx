@@ -31,7 +31,9 @@ const HomePage = () => {
               alt="image of a dog looking at how you are logging in"
             />
             <div className="bg-yellow-200 text-yellow-800 p-2 lg:mx-1 sm:mr-1 md:mx-2 rounded-lg sm:max-w-[60%] w-auto mt-4 sm:mt-0">
-              agregar texto acá
+            <p className="text-lg">
+            agregar texto acá
+            </p>
             </div>
           </div>
         </div>

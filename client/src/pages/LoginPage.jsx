@@ -12,11 +12,11 @@ const LoginPage = () => {
   const onSubmit = async (data) => {
     try {
       const res = await loginRequest(data);
-      console.log('soy res: ',res);
-      
+      console.log('soy res: ', res);
+
       const token = Cookies.get('token');
       console.log("token: ", token);
-      
+
       if (token) {
         login(token);
         navigate("/tasks");
@@ -75,8 +75,8 @@ const LoginPage = () => {
               Hey human! I'm Apo 11 🚀🐶, a super chill dog 🚀🐶 here to help you log in. Just follow these steps:
             </p>
             <ol className="my-2">
-                <li>1. Enter your info correctly</li>
-                <li>2. etc.</li>
+              <li>1. Enter your info correctly</li>
+              <li>2. etc.</li>
             </ol>
             <p className="text-lg mb-4">
               If you follow the instructions carefully, you won't have any issues 🚀🚀🚀.
@@ -89,7 +89,9 @@ const LoginPage = () => {
               alt="image of a dog looking at how you are logging in"
             />
             <div className="bg-yellow-200 text-yellow-800 p-2 lg:mx-1 sm:mr-1 md:mx-2 rounded-lg sm:max-w-[60%] w-auto mt-4 sm:mt-0">
-              Now, with the same vibe: 'Hey, it's me again, Apo 11 🚀🐶. If you're having trouble with authentication, ask any trusted dog for help. And whatever you do, steer clear of those web pirate cats. 🐾
+              <p className="text-lg">
+                Now, with the same vibe: 'Hey, it's me again, Apo 11 🚀🐶. If you're having trouble with authentication, ask any trusted dog for help. And whatever you do, steer clear of those web pirate cats. 🐾
+              </p>
             </div>
           </div>
         </div>
