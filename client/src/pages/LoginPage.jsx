@@ -74,7 +74,7 @@ const LoginPage = () => {
             <p className="text-lg mb-4">
               Hey human! I'm Apo 11 🚀🐶, a super chill dog 🚀🐶 here to help you log in. Just follow these steps:
             </p>
-            <ol className="my-2">
+            <ol className="mb-4 space-y-4">
               <li>1. Enter your info correctly</li>
               <li>2. etc.</li>
             </ol>

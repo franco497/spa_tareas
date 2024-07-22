@@ -6,7 +6,7 @@ const TaskModal = ({ task, onClose, onUpdate, onDelete }) => {
     defaultValues: {
       title: task.title,
       description: task.description,
-      date: task.date.split('T')[0], // Ajustar formato de la fecha
+      date: task.date//.split('T')[0], // Ajustar formato de la fecha, puede dar problems ya que algunas tareas no tiene fecha
     }
   });
 

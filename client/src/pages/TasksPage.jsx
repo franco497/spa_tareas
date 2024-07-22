@@ -92,16 +92,16 @@ const TasksPage = () => {
       </div>
 
       <div className="flex flex-col lg:flex-row justify-center items-center lg:px-14 py-12 w-full gap-20">
-        <div className="lg:pl-10 lg:pt-10 lg:w-[40%] w-[70%] flex flex-col items-center justify-center relative">
+        <div className="lg:pl-10 lg:pt-10 lg:w-[48%] w-[70%] flex flex-col items-center justify-center relative">
           <div className="bg-green-50 px-2 pt-6 pb-6 rounded-lg shadow-md text-green-900 w-full">
             <h2 className="text-2xl font-bold mb-4 text-center">Follow the instructions of Canfeynman 📚🐶</h2>
             <p className="text-lg mb-4">
               Hello human! I'm an investigator of the mysteries of the canine universe 🎓🧠. My name is Canfeynman 🐕 and I'll be here to assist you with the 'Tasks' tool. You can relax and trust me, it's quite simple:
             </p>
-            <ol className="my-2">
+            <ol className="mb-4 space-y-4">
               <li className='flex items-center'>1. To add new tasks, simply click on the <FcPlus className="mx-1" /> icon (the task date is optional).</li>
               <li>2. Once you add a new task, it will automatically appear in the Tasks List 📝.</li>
-              <li>3. To view details about a specific task, simply click on it or select the '#' icon.</li>
+              <li>3. To view details about a specific task, simply select by clicking on the task 🖱️.</li>
               <li>4. Within a task, you can edit it ✏️ or delete it 🗑️ as needed.</li>
             </ol>
             <p className="text-lg mb-4">
@@ -123,16 +123,15 @@ const TasksPage = () => {
           </div>
         </div>
 
-        <div className="lg:ml-10 lg:pt-10 lg:w-[35%] md:w-[50%] w-[70%] m-3 flex flex-col items-center justify-center relative">
+        <div className="lg:ml-10 lg:pt-10 lg:w-[30%] md:w-[50%] w-[70%] m-3 flex flex-col items-center justify-center relative">
           <div className="w-full border-2 border-solid border-fuchsia-600 bg-green-50 rounded-lg shadow-md text-green-900">
-            <h2 className="text-2xl font-bold mb-4 text-center">Tasks List</h2>
-            <div className="max-h-96 overflow-y-auto">
+            <h2 className="pt-6 pb-6 mb-6  text-2xl font-bold text-center">Tasks List 📝</h2>
+            <div className="max-h-[800px] lg:max-h-[620px] ml-5 mr-2 overflow-y-auto">
               {tasks.length > 0 ? (
                 <ul>
                   {tasks.map(task => (
-                    <li key={task._id} className="mb-4 p-4 border rounded-lg shadow-sm bg-white" onClick={() => handleTaskClick(task._id)}>
+                    <li key={task._id} className="mb-4 p-4 border rounded-lg shadow-sm bg-white transition hover:bg-slate-100" onClick={() => handleTaskClick(task._id)}>
                       <h3 className="text-xl font-semibold">{task.title}</h3>
-                      <p>{task.description}</p>
                       <p>{new Date(task.date).toLocaleDateString()}</p>
                     </li>
                   ))}
