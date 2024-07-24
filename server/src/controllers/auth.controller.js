@@ -42,6 +42,31 @@ export const register = async (req, res) => {
   }
 };
 
+export const updateProfile = async (req, res) => {
+  const { username, email, currentPassword, newPassword } = req.body;
+
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    const isMatch = await bcrypt.compare(currentPassword, user.password);
+    if (!isMatch) return res.status(400).json({ message: 'Incorrect password' });
+
+    if (username) user.username = username;
+    if (email) user.email = email;
+    if (newPassword) {
+      const passwordHash = await bcrypt.hash(newPassword, 10);
+      user.password = passwordHash;
+    }
+
+    await user.save();
+    res.json({ message: 'Profile updated successfully' });
+  } catch (error) {
+    console.error('Error updating profile:', error);
+    res.status(500).json({ message: 'Error updating profile' });
+  }
+};
+
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
