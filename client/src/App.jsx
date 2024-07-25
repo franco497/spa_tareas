@@ -21,28 +21,10 @@ function App() {
       errorElement: <Error />
     },
     {
-      path: "/profile",
-      element: (
-        <MainLayout>
-          <ProfilePage />
-        </MainLayout>
-      ),
-      errorElement: <Error />
-    },
-    {
       path: "/login",
       element: (
         <MainLayout>
           <LoginPage />
-        </MainLayout>
-      ),
-      errorElement: <Error />
-    },
-    {
-      path: "/logout",
-      element: (
-        <MainLayout>
-          <LogoutPage />
         </MainLayout>
       ),
       errorElement: <Error />
@@ -67,7 +49,25 @@ function App() {
             </MainLayout>
           ),
           errorElement: <Error />
-        }
+        },
+        {
+          path: "/logout",
+          element: (
+            <MainLayout>
+              <LogoutPage />
+            </MainLayout>
+          ),
+          errorElement: <Error />
+        },
+        {
+          path: "/profile",
+          element: (
+            <MainLayout>
+              <ProfilePage />
+            </MainLayout>
+          ),
+          errorElement: <Error />
+        },
       ]
     }
   ]);
